@@ -1,5 +1,31 @@
 ﻿Public Class LogAndGraphData
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Function GetData() As Integer
+        Return 5
+    End Function
 
+    Sub GraphData()
+        Dim g As Graphics = GraphPictureBox.CreateGraphics
+        Dim pen As New Pen(Color.Lime)
+        Dim scaleX As Single = GraphPictureBox.Width / 100
+        Dim scaleY As Single = (GraphPictureBox.Width / 100) * -1
+
+
+        g.TranslateTransform(0, GraphPictureBox.Height)
+        g.ScaleTransform(scaleX, scaleY)
+
+        pen.Width = 0.25
+        g.DrawLine(pen, 0, 5, 50, 5)
+
+        g.Dispose()
+        pen.Dispose()
+
+    End Sub
+    '---------------------------------------------------EVENT HANDLERS---------------------------------------------------------------------------------------------------
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
+
+    Private Sub GraphButton_Click(sender As Object, e As EventArgs) Handles GraphButton.Click
+        GraphData()
     End Sub
 End Class
