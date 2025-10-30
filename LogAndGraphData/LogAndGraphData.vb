@@ -23,7 +23,7 @@ Public Class LogAndGraphData
         Dim g As Graphics = GraphPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Lime)
         Dim scaleX As Single = CSng(GraphPictureBox.Width / 100)
-        Dim scaleY As Single = CSng((GraphPictureBox.Width / 100) * -1)
+        Dim scaleY As Single = CSng((GraphPictureBox.Height / 100) * -1)
         Dim oldY% = 50
         Dim newY% = 50
 
@@ -32,12 +32,12 @@ Public Class LogAndGraphData
         g.ScaleTransform(scaleX, scaleY) 'scale to 100x 100 units
         pen.Width = 0.25 'fix pen so it is not too thick
 
-        'For x = 0 To 100
-        '    g.DrawLine(pen, x - 1, oldY, x, newY)
-        '    oldY = newY
+        For x = 0 To 100
+            g.DrawLine(pen, x - 1, oldY, x, newY)
+            oldY = newY
 
-        'Next
-        g.DrawLine(pen, 5, -50, 95, -50)
+        Next
+        'g.DrawLine(pen, 5, 50, 95, 50)
 
         g.Dispose()
         pen.Dispose()
