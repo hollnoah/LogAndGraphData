@@ -25,17 +25,19 @@ Public Class LogAndGraphData
         Dim scaleX As Single = CSng(GraphPictureBox.Width / 100)
         Dim scaleY As Single = CSng((GraphPictureBox.Width / 100) * -1)
         Dim oldY% = 50
+        Dim newY% = 50
 
 
-        g.TranslateTransform(0, GraphPictureBox.Height)
-        g.ScaleTransform(scaleX, scaleY)
+        g.TranslateTransform(0, GraphPictureBox.Height) 'move origin to bottom left
+        g.ScaleTransform(scaleX, scaleY) 'scale to 100x 100 units
+        pen.Width = 0.25 'fix pen so it is not too thick
 
-        pen.Width = 0.25
+        'For x = 0 To 100
+        '    g.DrawLine(pen, x - 1, oldY, x, newY)
+        '    oldY = newY
 
-        For x = 0 To 100
-            g.DrawLine(pen, x - 1, oldY, x, 50)
-
-        Next
+        'Next
+        g.DrawLine(pen, 5, -50, 95, -50)
 
         g.Dispose()
         pen.Dispose()
@@ -47,9 +49,9 @@ Public Class LogAndGraphData
     End Sub
 
     Private Sub GraphButton_Click(sender As Object, e As EventArgs) Handles GraphButton.Click
-        'GraphData()
-        For i = 1 To 100
-            Console.WriteLine(GetRandomNumberAround(50, 10))
-        Next
+        GraphData()
+        'For i = 1 To 100
+        '    Console.WriteLine(GetRandomNumberAround(50, 10))
+        'Next
     End Sub
 End Class
