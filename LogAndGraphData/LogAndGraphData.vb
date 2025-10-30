@@ -2,6 +2,8 @@
 Option Explicit On
 Imports System.Runtime.InteropServices
 Public Class LogAndGraphData
+    Dim DataBuffer As New Queue(Of Integer)
+    '----------------------------PROGRAM LOGIC--------------------------------------
     Function GetRandomNumberAround(thisnUmber%, Optional within% = 10) As Integer
         Dim result%
         result = thisnUmber - within
@@ -16,6 +18,15 @@ Public Class LogAndGraphData
         Return CInt(System.Math.Floor((Rnd() * max)) + 1)
     End Function
     Function GetData() As Integer
+
+        'Me.DataBuffer.Last
+
+        If DataBuffer.Count >= 100 Then 'keep the queue trimmed to graph x length
+            Me.DataBuffer.Dequeue()
+        End If
+
+        Me.DataBuffer.Enqueue(5)
+
         Return 5
     End Function
 
@@ -38,7 +49,7 @@ Public Class LogAndGraphData
             oldY = newY
 
         Next
-        'g.DrawLine(pen, 5, 50, 95, 50)
+
 
         g.Dispose()
         pen.Dispose()
