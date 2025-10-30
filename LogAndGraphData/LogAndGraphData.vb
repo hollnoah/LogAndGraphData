@@ -4,8 +4,8 @@ Imports System.Runtime.InteropServices
 Public Class LogAndGraphData
     Function GetRandomNumberAround(thisnUmber%, Optional within% = 10) As Integer
         Dim result%
-
-        result = GetRandomNumber(within) + GetRandomNumber(within)
+        result = thisnUmber - within
+        result += GetRandomNumber(within) + GetRandomNumber(within)
 
         Return result
     End Function
@@ -33,6 +33,7 @@ Public Class LogAndGraphData
         pen.Width = 0.25 'fix pen so it is not too thick
 
         For x = 0 To 100
+            newY = GetRandomNumberAround(oldY, 5)
             g.DrawLine(pen, x - 1, oldY, x, newY)
             oldY = newY
 
