@@ -24,13 +24,18 @@ Public Class LogAndGraphData
         Dim pen As New Pen(Color.Lime)
         Dim scaleX As Single = CSng(GraphPictureBox.Width / 100)
         Dim scaleY As Single = CSng((GraphPictureBox.Width / 100) * -1)
+        Dim oldY% = 50
 
 
         g.TranslateTransform(0, GraphPictureBox.Height)
         g.ScaleTransform(scaleX, scaleY)
 
         pen.Width = 0.25
-        g.DrawLine(pen, 0, 5, 50, 5)
+
+        For x = 0 To 100
+            g.DrawLine(pen, x - 1, oldY, x, 50)
+
+        Next
 
         g.Dispose()
         pen.Dispose()
